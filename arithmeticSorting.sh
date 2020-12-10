@@ -18,3 +18,20 @@ do
 	Arr[$arrayIndex]=$value
 	arrayIndex=$(( $arrayIndex + 1 ))
 done
+arrl=${#Arr[@]}
+
+
+for (( i = 0 ; i <= $(( $arrl - 1 )) ; i++ ))
+do
+	for (( j = 0 ; j < $i ;j++ ))
+	do
+		if [ `echo | awk -v iVal="${Arr[$i]}" -v jVal="${Arr[$j]}" '{ if( iVal >= jVal ) print "True" ; else print "False" ;}'` == True ]
+		then
+		Temp=${Arr[$i]}
+		Arr[$i]=${Arr[$j]}
+		Arr[$j]=$Temp
+		fi
+	done
+done
+
+echo ${Arr[@]}
