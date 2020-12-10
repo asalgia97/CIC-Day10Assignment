@@ -35,3 +35,9 @@ do
 done
 
 echo ${Arr[@]}
+echo " Values in Ascending order : "
+
+for (( i = $arrl-1 ; i >= 0 ; i-- ))
+do
+		echo ${Arr[$i]}
+done
