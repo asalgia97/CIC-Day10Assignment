@@ -17,10 +17,7 @@ do
 	Arr[$Index]=$val
 	Index=$(( $Index + 1 ))
 done
-arrl=${#Arr[@]}
-
-
-for (( i=0;i<=$(($arrl-1));i++ ))
+for (( i=0;i<=$((${#Arr[@]}-1));i++ ))
 do
 	for ((j=0;j<$i;j++))
 	do
@@ -34,7 +31,7 @@ do
 done
 echo ${Arr[@]}
 echo " Values in Ascending order : "
-for ((i=$arrl-1;i>=0;i--))
+for ((i=${#Arr[@]}-1;i>=0;i--))
 do
 		echo ${Arr[$i]}
 done
