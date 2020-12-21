@@ -15,7 +15,7 @@ calculateV[4]=`echo | awk -v a=$a -v b=$b -v c=$c '{cal=a%b+c} END {print cal}'`
 
 for val in "${calculateV[@]}"
 do
-	Arr[$Index]=$value
+	Arr[$Index]=$val
 	Index=$(( $Index + 1 ))
 done
 for ((i=0;i<=$((${#Arr[@]} - 1));i++))
