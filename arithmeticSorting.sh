@@ -1,43 +1,40 @@
 #!/usr/bin/bash -x
-
-arrayIndex=0
+Index=0
 declare -A calculateV
 declare -a Arr
 
-read -p "Enter First Number : " a
-read -p "Enter Second Number : " b
-read -p "Enter a Third Number : " c
+read -p "Enter First Number:" 	a
+read -p "Enter Second Number:" 	b
+read -p "Enter a Third Number:" c
 
 calculateV[1]=`echo | awk -v a=$a -v b=$b -v c=$c '{cal=a+b*c} END {print cal}'`
 calculateV[2]=`echo | awk -v a=$a -v b=$b -v c=$c '{cal=a*b+c} END {print cal}'`
 calculateV[3]=`echo | awk -v a=$a -v b=$b -v c=$c '{cal=c+a/b} END {print cal}'`
 calculateV[4]=`echo | awk -v a=$a -v b=$b -v c=$c '{cal=a%b+c} END {print cal}'`
 
-for value in "${calculateV[@]}"
+for val in "${calculateV[@]}"
 do
-	Arr[$arrayIndex]=$value
-	arrayIndex=$(( $arrayIndex + 1 ))
+	Arr[$Index]=$val
+	Index=$(( $Index + 1 ))
 done
 arrl=${#Arr[@]}
 
 
-for (( i = 0 ; i <= $(( $arrl - 1 )) ; i++ ))
+for (( i=0;i<=$(($arrl-1));i++ ))
 do
-	for (( j = 0 ; j < $i ;j++ ))
+	for ((j=0;j<$i;j++))
 	do
-		if [ `echo | awk -v iVal="${Arr[$i]}" -v jVal="${Arr[$j]}" '{ if( iVal >= jVal ) print "True" ; else print "False" ;}'` == True ]
+		if [`echo | awk -v iVal="${Arr[$i]}" -v jVal="${Arr[$j]}" '{ if( iVal >= jVal ) print "True" ; else print "False" ;}'` == True]
 		then
-		Temp=${Arr[$i]}
+		swap=${Arr[$i]}
 		Arr[$i]=${Arr[$j]}
-		Arr[$j]=$Temp
+		Arr[$j]=$swap
 		fi
 	done
 done
-
 echo ${Arr[@]}
 echo " Values in Ascending order : "
-
-for (( i = $arrl-1 ; i >= 0 ; i-- ))
+for ((i=$arrl-1;i>=0;i--))
 do
 		echo ${Arr[$i]}
 done
